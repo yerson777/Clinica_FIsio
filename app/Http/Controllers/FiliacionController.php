@@ -67,6 +67,11 @@ class FiliacionController extends BaseController
     {   
     $filiacion = Filiacion::findOrFail($id); // Busca la filiación o muestra un error 404
     return view('filiacion.show')->with('filiacion', $filiacion);
+   
+{
+    $filiacion = Filiacion::with('signosVitales')->findOrFail($id); // Cargar signos vitales relacionados
+    return view('filiacion.show')->with('filiacion', $filiacion);
+}
     }
 
 

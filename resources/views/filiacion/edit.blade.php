@@ -10,85 +10,159 @@
 <form action="/filiacions/{{$filiacion->id}}" method="POST">
     @csrf    
     @method('PUT')
-    <div class="mb-3">
-        <label for="numero_ficha_clinico" class="form-label">Número de Ficha Clínica</label>
-        <input id="numero_ficha_clinico" name="numero_ficha_clinico" type="text" class="form-control" value="{{$filiacion->numero_ficha_clinico}}">    
+
+     <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Número de Ficha Clínica</th>
+                <td>
+                    <input id="numero_ficha_clinico" name="numero_ficha_clinico" type="text" class="form-control" value="{{$filiacion->numero_ficha_clinico}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>
+                    <input id="nombre" name="nombre" type="text" class="form-control" value="{{$filiacion->nombre}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>
+                    <input id="apellido" name="apellido" type="text" class="form-control" value="{{$filiacion->apellido}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Asegurado</th>
+                <td>
+                    <input id="asegurado" name="asegurado" type="text" class="form-control" value="{{$filiacion->asegurado}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Edad</th>
+                <td>
+                    <input id="edad" name="edad" type="number" class="form-control" value="{{$filiacion->edad}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Disciplina</th>
+                <td>
+                    <input id="disciplina" name="disciplina" type="text" class="form-control" value="{{$filiacion->disciplina}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Posición/Prueba</th>
+                <td>
+                    <input id="posicion_prueba" name="posicion_prueba" type="text" class="form-control" value="{{$filiacion->posicion_prueba}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Ocupación</th>
+                <td>
+                    <input id="ocupacion" name="ocupacion" type="text" class="form-control" value="{{$filiacion->ocupacion}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Peso</th>
+                <td>
+                    <input id="peso" name="peso" type="number" step="0.01" class="form-control" value="{{$filiacion->peso}}" oninput="calcularIMC()">
+                </td>
+            </tr>
+            <tr>
+                <th>Talla</th>
+                <td>
+                    <input id="talla" name="talla" type="number" step="0.01" class="form-control" value="{{$filiacion->talla}}" oninput="calcularIMC()">
+                </td>
+            </tr>
+            <tr>
+                <th>IMC</th>
+                <td>
+                    <input id="imc" name="imc" type="number" step="0.01" class="form-control" value="{{$filiacion->imc}}" readonly>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Procedencia</th>
+                <td>
+                    <select id="procedencia" name="procedencia" class="form-control">
+                        <option value="">Seleccione un municipio</option>
+                        <option value="Aiquile" {{ $filiacion->procedencia == 'Aiquile' ? 'selected' : '' }}>Aiquile</option>
+                        <option value="Arani" {{ $filiacion->procedencia == 'Arani' ? 'selected' : '' }}>Arani</option>
+                        <option value="Arque" {{ $filiacion->procedencia == 'Arque' ? 'selected' : '' }}>Arque</option>
+                        <option value="Capinota" {{ $filiacion->procedencia == 'Capinota' ? 'selected' : '' }}>Capinota</option>
+                        <option value="Cochabamba" {{ $filiacion->procedencia == 'Cochabamba' ? 'selected' : '' }}>Cochabamba</option>
+                        <option value="Colcapirhua" {{ $filiacion->procedencia == 'Colcapirhua' ? 'selected' : '' }}>Colcapirhua</option>
+                        <option value="Colomi" {{ $filiacion->procedencia == 'Colomi' ? 'selected' : '' }}>Colomi</option>
+                        <option value="Constanza" {{ $filiacion->procedencia == 'Constanza' ? 'selected' : '' }}>Constanza</option>
+                        <option value="Cruz Loma" {{ $filiacion->procedencia == 'Cruz Loma' ? 'selected' : '' }}>Cruz Loma</option>
+                        <option value="Icla" {{ $filiacion->procedencia == 'Icla' ? 'selected' : '' }}>Icla</option>
+                        <option value="Liriuni" {{ $filiacion->procedencia == 'Liriuni' ? 'selected' : '' }}>Liriuni</option>
+                        <option value="Mizque" {{ $filiacion->procedencia == 'Mizque' ? 'selected' : '' }}>Mizque</option>
+                        <option value="Pocona" {{ $filiacion->procedencia == 'Pocona' ? 'selected' : '' }}>Pocona</option>
+                        <option value="Punata" {{ $filiacion->procedencia == 'Punata' ? 'selected' : '' }}>Punata</option>
+                        <option value="Quillacollo" {{ $filiacion->procedencia == 'Quillacollo' ? 'selected' : '' }}>Quillacollo</option>
+                        <option value="Sipe Sipe" {{ $filiacion->procedencia == 'Sipe Sipe' ? 'selected' : '' }}>Sipe Sipe</option>
+                        <option value="Tiquipaya" {{ $filiacion->procedencia == 'Tiquipaya' ? 'selected' : '' }}>Tiquipaya</option>
+                        <option value="Vinto" {{ $filiacion->procedencia == 'Vinto' ? 'selected' : '' }}>Vinto</option>
+                        <option value="Vila Vila" {{ $filiacion->procedencia == 'Vila Vila' ? 'selected' : '' }}>Vila Vila</option>
+                        <option value="Otro" {{ $filiacion->procedencia == 'Otro' ? 'selected' : '' }}>Otro</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>
+                    <textarea id="direccion" name="direccion" class="form-control">{{$filiacion->direccion}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <td>
+                    <input id="telefono" name="telefono" type="text" class="form-control" value="{{$filiacion->telefono}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Asociación/Club</th>
+                <td>
+                    <input id="asociacion_club" name="asociacion_club" type="text" class="form-control" value="{{$filiacion->asociacion_club}}">
+                </td>
+            </tr>
+            <tr>
+                <th>Fisioterapeuta/Kinesiólogo</th>
+                <td>
+                    <select id="fisioterapeuta_kinesiologo" name="fisioterapeuta_kinesiologo" class="form-control">
+                        <option value="Fisioterapeuta" {{ $filiacion->fisioterapeuta_kinesiologo == 'Fisioterapeuta' ? 'selected' : '' }}>Fisioterapeuta</option>
+                        <option value="Kinesiólogo" {{ $filiacion->fisioterapeuta_kinesiologo == 'Kinesiólogo' ? 'selected' : '' }}>Kinesiólogo</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Fecha de Evaluación</th>
+                <td>
+                    <input id="fecha_evaluacion" name="fecha_evaluacion" type="date" class="form-control" value="{{$filiacion->fecha_evaluacion}}">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end">
+        <a href="/filiacions" class="btn btn-secondary me-2">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
-    <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input id="nombre" name="nombre" type="text" class="form-control" value="{{$filiacion->nombre}}">
-    </div>
-    <div class="mb-3">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input id="apellido" name="apellido" type="text" class="form-control" value="{{$filiacion->apellido}}">
-    </div>
-    <div class="mb-3">
-        <label for="asegurado" class="form-label">Asegurado</label>
-        <input id="asegurado" name="asegurado" type="text" class="form-control" value="{{$filiacion->asegurado}}">
-    </div>
-    <div class="mb-3">
-        <label for="edad" class="form-label">Edad</label>
-        <input id="edad" name="edad" type="number" class="form-control" value="{{$filiacion->edad}}">
-    </div>
-    <div class="mb-3">
-        <label for="disciplina" class="form-label">Disciplina</label>
-        <input id="disciplina" name="disciplina" type="text" class="form-control" value="{{$filiacion->disciplina}}">
-    </div>
-    <div class="mb-3">
-        <label for="posicion_prueba" class="form-label">Posición/Prueba</label>
-        <input id="posicion_prueba" name="posicion_prueba" type="text" class="form-control" value="{{$filiacion->posicion_prueba}}">
-    </div>
-    <div class="mb-3">
-        <label for="ocupacion" class="form-label">Ocupación</label>
-        <input id="ocupacion" name="ocupacion" type="text" class="form-control" value="{{$filiacion->ocupacion}}">
-    </div>
-    <div class="mb-3">
-        <label for="peso" class="form-label">Peso</label>
-        <input id="peso" name="peso" type="number" step="0.01" class="form-control" value="{{$filiacion->peso}}">
-    </div>
-    <div class="mb-3">
-        <label for="talla" class="form-label">Talla</label>
-        <input id="talla" name="talla" type="number" step="0.01" class="form-control" value="{{$filiacion->talla}}">
-    </div>
-    <div class="mb-3">
-        <label for="imc" class="form-label">IMC</label>
-        <input id="imc" name="imc" type="number" step="0.01" class="form-control" value="{{$filiacion->imc}}">
-    </div>
-    <div class="mb-3">
-        <label for="procedencia" class="form-label">Procedencia</label>
-        <input id="procedencia" name="procedencia" type="text" class="form-control" value="{{$filiacion->procedencia}}">
-    </div>
-    <div class="mb-3">
-        <label for="direccion" class="form-label">Dirección</label>
-        <textarea id="direccion" name="direccion" class="form-control">{{$filiacion->direccion}}</textarea>
-    </div>
-    <div class="mb-3">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input id="telefono" name="telefono" type="text" class="form-control" value="{{$filiacion->telefono}}">
-    </div>
-    <div class="mb-3">
-        <label for="asociacion_club" class="form-label">Asociación/Club</label>
-        <input id="asociacion_club" name="asociacion_club" type="text" class="form-control" value="{{$filiacion->asociacion_club}}">
-    </div>
-    <div class="mb-3">
-        <label for="fisioterapeuta_kinesiologo" class="form-label">Fisioterapeuta/Kinesiólogo</label>
-        <input id="fisioterapeuta_kinesiologo" name="fisioterapeuta_kinesiologo" type="text" class="form-control" value="{{$filiacion->fisioterapeuta_kinesiologo}}">
-    </div>
-    <div class="mb-3">
-        <label for="fecha_evaluacion" class="form-label">Fecha de Evaluación</label>
-        <input id="fecha_evaluacion" name="fecha_evaluacion" type="date" class="form-control" value="{{$filiacion->fecha_evaluacion}}">
-    </div>
-    <a href="/filiacions" class="btn btn-secondary">Cancelar</a>
-    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
-
-@stop
-
-@section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')
-    <!-- <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script> -->
+    <script>
+        function calcularIMC() {
+            const peso = parseFloat(document.getElementById('peso').value);
+            const talla = parseFloat(document.getElementById('talla').value) / 100; // Convertir cm a metros
+
+            if (!isNaN(peso) && !isNaN(talla) && talla > 0) {
+                const imc = (peso / (talla * talla)).toFixed(2);
+                document.getElementById('imc').value = imc;
+            } else {
+                document.getElementById('imc').value = '';
+            }
+        }
+    </script>
 @stop

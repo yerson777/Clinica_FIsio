@@ -12,7 +12,7 @@
 <table id="filiacions" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
   <thead class="bg-primary text-white">
     <tr>
-      <th scope="col">ID</th>
+       <!-- <th scope="col">ID</th> -->
       <th scope="col">N° Ficha Clínica</th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
@@ -36,7 +36,8 @@
   <tbody>    
     @foreach ($filiacions as $filiacion)
     <tr>
-        <td>{{$filiacion->id}}</td>
+
+ 	<!-- <td>{{$filiacion->id}}</td> -->
         <td>{{$filiacion->numero_ficha_clinico}}</td>
         <td>{{$filiacion->nombre}}</td>
         <td>{{$filiacion->apellido}}</td>
@@ -54,20 +55,20 @@
         <td>{{$filiacion->asociacion_club}}</td>
         <td>{{$filiacion->fisioterapeuta_kinesiologo}}</td>
         <td>{{$filiacion->fecha_evaluacion}}</td> -->
-        <td>
-         <form action="{{ route('filiacions.destroy',$filiacion->id) }}" method="POST">
-          <a href="/filiacions/{{$filiacion->id}}/edit" class="btn btn-primary ">
-          <i class="fas fa-edit"></i></a>        
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger">
-                <i class="fas fa-trash-alt"></i> 
-              </button>
-              <a href="/filiacions/{{$filiacion->id}}" class="btn btn-info">
-                <i class="fas fa-eye"></i>
-               </a> 
-              
 
+        <td>
+         <form action="{{ route('filiacions.destroy', $filiacion->id) }}" method="POST" class="form-eliminar">
+          <a href="/filiacions/{{$filiacion->id}}/edit" class="btn btn-primary">
+            <i class="fas fa-edit"></i>
+          </a>
+          @csrf
+          @method('DELETE')
+          <button type="button" class="btn btn-danger btn-eliminar">
+            <i class="fas fa-trash-alt"></i> 
+          </button>
+          <a href="/filiacions/{{$filiacion->id}}" class="btn btn-info">
+            <i class="fas fa-eye"></i>
+          </a> 
          </form>          
         </td>        
     </tr>
@@ -77,8 +78,9 @@
 @stop
 
 @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
     <link href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 @stop
 
 @section('js')
@@ -86,14 +88,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 $(document).ready(function(){
     $('#filiacions').DataTable({
         "lengthMenu":[[5,10,50,-1], [5,10,50,"All"]]
     });
+
+    // SweetAlert2 para confirmación antes de eliminar
+    $('.btn-eliminar').click(function(event) {
+        event.preventDefault();
+        var form = $(this).closest('form'); // Capturar el formulario más cercano
+
+        Swal.fire({
+            title: '¿Estás seguro de eliminar este registro?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // Si confirma, envía el formulario
+            }
+        })
+    });
 });
-    // new DataTable('#filiacions');
 </script>
 
 @stop

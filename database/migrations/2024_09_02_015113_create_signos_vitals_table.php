@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('signos_vitals', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('filiacion_id')->constrained('filiacions')->onDelete('cascade'); // Relación con la tabla filiacion
+            $table->decimal('presion_arterial', 5, 2)->nullable(); // Presión arterial 
+            $table->decimal('temperatura', 4, 2)->nullable(); // Temperatura corporal
+            $table->decimal('frecuencia_respiratoria', 5, 2)->nullable(); // Frecuencia respiratoria
+            $table->integer('pulso')->nullable(); // Pulso (latidos por minuto)
+            $table->timestamps(); // Fecha de registro
         });
     }
 

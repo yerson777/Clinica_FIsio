@@ -12,32 +12,90 @@
         <h3 class="card-title">Información del Paciente</h3>
     </div>
     <div class="card-body">
-        <p><strong>ID:</strong> {{ $filiacion->id }}</p>
-        <p><strong>N° Ficha Clínica:</strong> {{ $filiacion->numero_ficha_clinico }}</p>
-        <p><strong>Nombre:</strong> {{ $filiacion->nombre }}</p>
-        <p><strong>Apellido:</strong> {{ $filiacion->apellido }}</p>
-        <p><strong>Asegurado:</strong> {{ $filiacion->asegurado }}</p>
-        <p><strong>Edad:</strong> {{ $filiacion->edad }}</p>
-        <p><strong>Disciplina:</strong> {{ $filiacion->disciplina }}</p>
-        <p><strong>Posición/Prueba:</strong> {{ $filiacion->posicion_prueba }}</p>
-        <p><strong>Ocupación:</strong> {{ $filiacion->ocupacion }}</p>
-        <p><strong>Peso:</strong> {{ $filiacion->peso }}</p>
-        <p><strong>Talla:</strong> {{ $filiacion->talla }}</p>
-        <p><strong>IMC:</strong> {{ $filiacion->imc }}</p>
-        <p><strong>Procedencia:</strong> {{ $filiacion->procedencia }}</p>
-        <p><strong>Dirección:</strong> {{ $filiacion->direccion }}</p>
-        <p><strong>Teléfono:</strong> {{ $filiacion->telefono }}</p>
-        <p><strong>Asociación/Club:</strong> {{ $filiacion->asociacion_club }}</p>
-        <p><strong>Fisioterapeuta/Kinesiólogo:</strong> {{ $filiacion->fisioterapeuta_kinesiologo }}</p>
-        <p><strong>Fecha de Evaluación:</strong> {{ $filiacion->fecha_evaluacion }}</p>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>ID:</th>
+                    <td>{{ $filiacion->id }}</td>
+                </tr>
+                <tr>
+                    <th>N° Ficha Clínica:</th>
+                    <td>{{ $filiacion->numero_ficha_clinico }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre:</th>
+                    <td>{{ $filiacion->nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido:</th>
+                    <td>{{ $filiacion->apellido }}</td>
+                </tr>
+                <tr>
+                    <th>Asegurado:</th>
+                    <td>{{ $filiacion->asegurado }}</td>
+                </tr>
+                <tr>
+                    <th>Edad:</th>
+                    <td>{{ $filiacion->edad }}</td>
+                </tr>
+                <tr>
+                    <th>Disciplina:</th>
+                    <td>{{ $filiacion->disciplina }}</td>
+                </tr>
+                <tr>
+                    <th>Posición/Prueba:</th>
+                    <td>{{ $filiacion->posicion_prueba }}</td>
+                </tr>
+                <tr>
+                    <th>Ocupación:</th>
+                    <td>{{ $filiacion->ocupacion }}</td>
+                </tr>
+                <tr>
+                    <th>Peso:</th>
+                    <td>{{ $filiacion->peso }}</td>
+                </tr>
+                <tr>
+                    <th>Talla:</th>
+                    <td>{{ $filiacion->talla }}</td>
+                </tr>
+                <tr>
+                    <th>IMC:</th>
+                    <td>{{ $filiacion->imc }}</td>
+                </tr>
+                <tr>
+                    <th>Procedencia:</th>
+                    <td>{{ $filiacion->procedencia }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección:</th>
+                    <td>{{ $filiacion->direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono:</th>
+                    <td>{{ $filiacion->telefono }}</td>
+                </tr>
+                <tr>
+                    <th>Asociación/Club:</th>
+                    <td>{{ $filiacion->asociacion_club }}</td>
+                </tr>
+                <tr>
+                    <th>Fisioterapeuta/Kinesiólogo:</th>
+                    <td>{{ $filiacion->fisioterapeuta_kinesiologo }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Evaluación:</th>
+                    <td>{{ $filiacion->fecha_evaluacion }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="card-footer">
         <a href="/filiacions" class="btn btn-secondary">Regresar</a>
-        <a href="/filiacions/{{$filiacion->id}}/edit" class="btn btn-primary">Editar</a>
+
+
         <form action="{{ route('filiacions.destroy', $filiacion->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Eliminar</button>
         </form>
     </div>
 </div>

@@ -324,17 +324,18 @@ return [
         ],
         ['header' => 'FICHA KINESICA-FISICA'],
         [
-            'text' => 'Filiación de Pacientes.',
-            'url' => 'filiacions',
+            'text' => 'Filiación de Pacientes',
+            'url'  => 'filiacions',
             'icon' => 'fas fa-fw fa-user',
             'label_color' => 'success',
         ],
         [
-            'text' => 'Registro de Signos Vitales.',
-            'url' => 'admin/settings',
+            'text' => 'Registro de Signos Vitales',
+            'url'  => 'signos_vitales', // URL para listar todos los signos vitales
             'icon' => 'fas fa-fw fa-heartbeat',
-            
         ],
+            
+
         [
             'text' => 'Historias Clinicas.',
             'icon' => 'fas fa-fw fa-notes-medical',
@@ -342,9 +343,35 @@ return [
             'submenu' => [
                 [
                     'text' => 'Registro de Evaluación.',
-                    'icon' => 'fas fa-fw fa-clipboard-check',
-                    'url' => '#',
-                    
+                    'icon' => 'fas fa-fw fa-bone',
+                    'url' => '#',       
+                    'submenu' => [
+                        [
+                            'text' => 'Segmentos corporal.',
+                            'icon' => 'fas fa-fw fa-vector-square',
+                            'url' => '#',
+                        ], 
+                        [
+                            'text' => 'Fuerza Muscular',
+                            'icon' => 'fas fa-fw fa-dumbbell',
+                            'url' => '#',
+                        ], 
+                        [
+                            'text' => 'Flexibilidad',
+                            'icon' => 'fas fa-fw fa-child',
+                            'url' => '#',
+                        ], 
+                        [
+                            'text' => 'Cualidades Fisicas',
+                            'icon' => 'fas fa-fw fa-running',
+                            'url' => '#',
+                        ], 
+                        [
+                            'text' => 'Pruebas Especificas',
+                            'icon' => 'fas fa-fw fa-vials',
+                            'url' => '#',
+                        ], 
+                    ],         
                 ],
                 [
                     'text' => 'Registro de Diagnostico.',
@@ -375,6 +402,18 @@ return [
                     'text' => 'Registro de Tratamientos.',
                     'icon' => 'fas fa-fw fa-prescription-bottle-alt',
                     'url' => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Tratamiento F-Terapeatico',
+                            'icon' => 'fas fa-fw fa-thermometer-half',
+                            'url' => '#',
+                        ],
+                        [
+                            'text' => 'Tratamiento Kinesiologico',
+                            'icon' => 'fas fa-fw fa-futbol',
+                            'url' => '#',
+                        ],
+                    ], 
                 ],
                 [
                     'text' => 'Informe de la evolucion del paciente.',
@@ -384,11 +423,13 @@ return [
                 
             ],
         ],
+
         [
             'text' => 'Seguimiento de Sesiones Kinesiológicas.',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-running',
         ],
+        ['header' => 'Otras operaciones'],
         [
             'text' => 'Programar Citas Kinesiológicas.',
             'url' => 'admin/settings',
